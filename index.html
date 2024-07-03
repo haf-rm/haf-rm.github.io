@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="HAF-RM: A Hybrid Alignment Framework for Reward Model Training">
+  <meta name="keywords" content="alarm, hierarchical, rlhf">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HAF-RM: A Hybrid Alignment Framework for Reward Model Training</title>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-X1M114XVB7"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-X1M114XVB7');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/alarm-clock.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="http://www.fudan-disc.com/">
+        <span class="icon">
+          <i class="fas fa-home"></i>
+        </span>
+      </a>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More Research
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="https://ALaRM-fdu.github.io/">
+            <span class="dnerf">ALaRM</span>: Align Language Models via Hierarchical Rewards Modeling
+          </a>
+          <a class="navbar-item" href="http://law.fudan-disc.com/">
+            DISC-LawLLM
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title"><span class="dnerf">HaF-RM</span>: A Hybrid Alignment Framework for Reward Model Training</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://lsjlsj35.github.io/">Shujun Liu</a>,
+            </span>
+            <span class="author-block">
+              <a href="https://www.eitech.edu.cn/?tid=110&p=teacher">Xiaoyu Shen</a>,
+            </span>
+            <span class="author-block">
+              <a href="https://halfrot.github.io/">Yuhang Lai</a>,&nbsp;</span>
+            <span class="author-block">
+              <a href="https://siyuanwangw.github.io/">Siyuan Wang</a>,&nbsp;</span>
+            <span class="author-block">
+              <a href="https://github.com/yueshengbin">Shengbin Yue</a></span>
+            <br/>
+            <span class="author-block">
+              <a href="https://zengfenghuang.github.io/">Zengfeng Huang</a>,&nbsp;
+            </span>
+            <span class="author-block">
+              <a href="https://xuanjing-huang.github.io/">Xuanjing Huang</a>,&nbsp;
+            </span>
+            <span class="author-block">
+              <a href="http://www.fudan-disc.com/people/zywei">Zhongyu Wei</a>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">Fudan University</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2403.06754"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/halfrot/ALaRM"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <h2 class="subtitle has-text-centered">
+        <span class="dnerf">HaF</span> is a reward model training framework for high-quality alignment.
+      </h2>
+      <img src="static/images/1.png">
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            The reward model has become increasingly important in alignment, assessment, and data construction for large language models (LLMs). Most existing researchers focus on enhancing reward models through data improvements, following the conventional training framework for reward models that directly optimizes the predicted rewards.</p>
+          <p>
+            In this paper, we propose a hybrid alignment framework <span class="dnerf">HaF-RM</span> for reward model training by introducing an additional constraint on token-level policy probabilities in addition to the reward score. 
+            It can simultaneously supervise the internal preference model at the token level and optimize the mapping layer of the reward model at the sequence level.</p>
+          <p>
+            Theoretical justifications and experiment results on five datasets show the validity and effectiveness of our proposed hybrid framework for training a high-quality reward model.
+            By decoupling the reward modeling procedure and incorporating hybrid supervision, our <span class="dnerf">HaF-RM</span> framework offers a principled and effective approach to enhancing the performance and alignment of reward models, a critical component in the responsible development of powerful language models. 
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Motivation</h2>
+        <div class="content has-text-justified">
+          <p>
+             Training the reward model involves aligning the model preference and learning a "preference-reward" projection. Initialized with well-trained LLM, the reward model has nearly aligned preference while it has to learn the projection from scratch.
+          </p>
+          <p>
+            DPO loss shares the same premise with reward loss. DPO model can be considered as a token-wise reward model which functions similarly with the standard reward model (sequence-wise). So we can use DPO loss as an auxiliary loss function to improve the stability of training process and further boost the reward model's performance.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Long-form QA -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Intrinsic: Overall Performance</h2>
+      </div>
+    </div>
+
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <div class="content">
+          <img src="static/images/overall.png">
+        </div>
+      </div>
+      <!-- <div class="column is-two-fifths">
+        <div class="content">
+          <img src="static/images/long-form-QA-mean.png">
+        </div>
+      </div> -->
+    </div>
+
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <div class="content has-text-justified">
+          <p>
+            <li>The <span class="dnerf">HaF</span> model can more sensitively identify whether an answer is good and give a more accurate high (or low) score.</li>
+            <li>The <span class="dnerf">HaF</span> model is basically not waker than the baseline under various circumstances.</li>
+          </p>
+
+          <!-- <img src="static/images/long-form-QA-win-rate.png"> -->
+        </div>
+      </div>
+    </div>
+    <!--/ Long-form QA -->
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- MT -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Intrinsic: Mixed Data</h2>
+      </div>
+    </div>
+
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <div class="content">
+          <img src="static/images/mixed.png">
+        </div>
+      </div>
+    </div>
+
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <div class="content has-text-justified">
+          <p>
+            <li><span class="dnerf">HaF</span> can better learn the diversity present in the combined datasets for generalization.</li>
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ MT -->
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- MT -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Intrinsic: OOD Data</h2>
+      </div>
+    </div>
+
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <div class="content">
+          <img src="static/images/OOD.png">
+        </div>
+      </div>
+    </div>
+
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <div class="content has-text-justified">
+          <p>
+            <li>DPO model converge to approximately 50% in a highly exaggerated manner, indicating a complete loss of modeling capability for OOD data.</li>
+          </p>
+          <p>
+            <li><span class="dnerf">HaF</span> possesses a strong ability to learn preferences and effectively generalize them to similar preference distributions, despite great differences in language style and topi</li>
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ MT -->
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Ablation Study. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Downstream Task: Best-of-N</h2>
+        <div class="content has-text-justified">
+          <div style="text-align: center;">
+            <img src="static/images/wr.png" width="50%">
+            <img width="5%">
+            <img src="static/images/topkrecall.png" width="40%">
+          </div>
+          <p>
+            <li><span class="dnerf">HaF</span> demonstrates significant advantages over the baseline especially for Phi-2 model.</li>
+          </p>
+          <p>
+            <li>Top-k recall for baseline is close to the result with random selection, while <span class="dnerf">HaF</span> can effectively distinguish between responses when the quality differences are minimal.</li>
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Ablation Study. -->
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Ablation Study. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Downstream Task: RLHF</h2>
+        <div class="content has-text-justified">
+          <div style="text-align: center;">
+            <img src="static/images/rlhf.png" width="60%">
+          </div>
+          <p>
+            As the backbone models exhibit little harmfulness, the datasets used are irrelevant to the safety issue.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Ablation Study. -->
+  </div>
+</section>
+
+<section class="section" id="BibTeX">
+  <!-- <div class="container is-max-desktop content">
+    <div class="bibtex-body">
+      <h2 class="title">BibTeX</h2>
+      <pre><code>@article{lai2024alarm,
+      title={ALaRM: Align Language Models via Hierarchical Rewards Modeling}, 
+      author={Lai, Yuhang and Wang, Siyuan and Liu, Shujun and Huang, Xuanjing and Wei, Zhongyu},
+      journal={arXiv preprint arXiv:2403.06754},
+      year={2024}
+}</code></pre>
+    </div>
+  </div> -->
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <!-- <a class="icon-link" href="https://arxiv.org/pdf/2403.06754.pdf"> -->
+      <a class="icon-link">
+        <i class="fas fa-file-pdf" style="color:white"></i>
+      </a>
+      <!-- <a class="icon-link" href="https://github.com/halfrot/ALaRM" class="external-link" disabled> -->
+      <a class="icon-link">
+        <i class="fab fa-github" style="color:white"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+              href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+              Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            This means you are free to borrow the <a href="https://github.com/nerfies/nerfies.github.io">source
+              code</a> of this website,
+            we just ask that you link back to this page in the footer.
+            Please remember to remove the analytics code included in the header of the website which
+            you do not want on your website.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
