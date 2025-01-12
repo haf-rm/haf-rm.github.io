@@ -65,6 +65,9 @@
           <a class="navbar-item" href="http://law.fudan-disc.com/">
             DISC-LawLLM
           </a>
+          <a class="navbar-item" href="https://link.springer.com/chapter/10.1007/978-981-97-5569-1_19">
+            LawLLM: Intelligent Legal System with Legal Reasoning and Verifiable Retrieval
+          </a>
         </div>
       </div>
     </div>
@@ -144,7 +147,7 @@
       <h2 class="subtitle has-text-centered">
         <span class="dnerf">HaF</span> is a reward model training framework for high-quality alignment.
       </h2>
-      <img src="static/images/1.png">
+      <img src="static/images/HAF-training-framework.jpg">
     </div>
   </div>
 </section>
@@ -192,163 +195,249 @@
 </section>
 
 <section class="section">
-  <div class="container is-max-desktop">
-    <!-- Long-form QA -->
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Intrinsic: Overall Performance</h2>
-      </div>
-    </div>
-
-    <div class="columns is-centered">
-      <div class="column is-four-fifths">
-        <div class="content">
-          <img src="static/images/overall.png">
+    <div class="container is-max-desktop">
+      <!-- Long-form QA -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Preliminary Study: Overall Performance</h2>
         </div>
       </div>
-      <!-- <div class="column is-two-fifths">
-        <div class="content">
-          <img src="static/images/long-form-QA-mean.png">
-        </div>
-      </div> -->
-    </div>
-
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <div class="content has-text-justified">
-          <p>
-            <li>The <span class="dnerf">HaF</span> model can more sensitively identify whether an answer is good and give a more accurate high (or low) score.</li>
-            <li>The <span class="dnerf">HaF</span> model is basically not waker than the baseline under various circumstances.</li>
-          </p>
-
-          <!-- <img src="static/images/long-form-QA-win-rate.png"> -->
-        </div>
-      </div>
-    </div>
-    <!--/ Long-form QA -->
-  </div>
-</section>
-
-<section class="section">
-  <div class="container is-max-desktop">
-    <!-- MT -->
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Intrinsic: Mixed Data</h2>
-      </div>
-    </div>
-
-    <div class="columns is-centered">
-      <div class="column is-four-fifths">
-        <div class="content">
-          <img src="static/images/mixed.png">
-        </div>
-      </div>
-    </div>
-
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <div class="content has-text-justified">
-          <p>
-            <li><span class="dnerf">HaF</span> can better learn the diversity present in the combined datasets for generalization.</li>
-          </p>
-        </div>
-      </div>
-    </div>
-    <!--/ MT -->
-  </div>
-</section>
-
-<section class="section">
-  <div class="container is-max-desktop">
-    <!-- MT -->
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Intrinsic: OOD Data</h2>
-      </div>
-    </div>
-
-    <div class="columns is-centered">
-      <div class="column is-four-fifths">
-        <div class="content">
-          <img src="static/images/OOD.png">
-        </div>
-      </div>
-    </div>
-
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <div class="content has-text-justified">
-          <p>
-            <li>DPO model converge to approximately 50% in a highly exaggerated manner, indicating a complete loss of modeling capability for OOD data.</li>
-          </p>
-          <p>
-            <li><span class="dnerf">HaF</span> possesses a strong ability to learn preferences and effectively generalize them to similar preference distributions, despite great differences in language style and topi</li>
-          </p>
-        </div>
-      </div>
-    </div>
-    <!--/ MT -->
-  </div>
-</section>
-
-<section class="section">
-  <div class="container is-max-desktop">
-    <!-- Ablation Study. -->
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Downstream Task: Best-of-N</h2>
-        <div class="content has-text-justified">
-          <div style="text-align: center;">
-            <img src="static/images/wr.png" width="50%">
-            <img width="5%">
-            <img src="static/images/topkrecall.png" width="40%">
+  
+      <div class="columns is-centered">
+        <div class="column is-four-fifths">
+          <div style="display: flex; align-items: flex-start; justify-content: center; gap: 20px;">
+            <img src="static/images/reward-dif.png" width="50%">
+            <img src="static/images/reward-ppl-relevance.png" width="40%">
           </div>
-          <p>
-            <li><span class="dnerf">HaF</span> demonstrates significant advantages over the baseline especially for Phi-2 model.</li>
-          </p>
-          <p>
-            <li>Top-k recall for baseline is close to the result with random selection, while <span class="dnerf">HaF</span> can effectively distinguish between responses when the quality differences are minimal.</li>
-          </p>
         </div>
       </div>
-    </div>
-    <!--/ Ablation Study. -->
-  </div>
-</section>
-
-<section class="section">
-  <div class="container is-max-desktop">
-    <!-- Ablation Study. -->
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Downstream Task: RLHF</h2>
-        <div class="content has-text-justified">
-          <div style="text-align: center;">
-            <img src="static/images/rlhf.png" width="60%">
+  
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <div class="content has-text-justified">
+            <p>
+              <li>(Left)The reward difference of <span class="dnerf">HaF</span>-generated response and the other response predicted by <span class="dnerf">HaF</span> model tends to be higher than it should be. (Above y=x)</li>
+              <li>(Right)The token-wise perplexities of DPO model have a positive relevance with the rewards of the reward model when trained with the same dataset.</li>
+            </p>
+  
+            <!-- <img src="static/images/long-form-QA-win-rate.png"> -->
           </div>
-          <p>
-            As the backbone models exhibit little harmfulness, the datasets used are irrelevant to the safety issue.
-          </p>
+        </div>
+      </div>
+      <!--/ Long-form QA -->
+    </div>
+  </section>
+  
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column is-four-fifths">
+          <article class="message is-info">
+            <div class="message-header" style="font-size: 1.4rem;">
+              <p>Takeaway 1</p>
+            </div>
+            <div class="message-body" style="font-size: 1.2rem;">
+              <p> The internal preference model determines the token probabilities and the rewards.</p>
+            </div>
+          </article>
         </div>
       </div>
     </div>
-    <!--/ Ablation Study. -->
-  </div>
-</section>
+  </section>
+  
+  <section class="section">
+    <div class="container is-max-desktop">
+      <!-- Long-form QA -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Intrinsic: Overall Performance</h2>
+        </div>
+      </div>
+  
+      <div class="columns is-centered">
+        <div class="column is-four-fifths">
+          <div class="content">
+            <img src="static/images/overall.png">
+          </div>
+        </div>
+        <!-- <div class="column is-two-fifths">
+          <div class="content">
+            <img src="static/images/long-form-QA-mean.png">
+          </div>
+        </div> -->
+      </div>
+  
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <div class="content has-text-justified">
+            <p>
+              <li>The <span class="dnerf">HaF</span> model can more sensitively identify whether an answer is good and give a more accurate high (or low) score.</li>
+              <li>The <span class="dnerf">HaF</span> model is basically not waker than the baseline under various circumstances.</li>
+            </p>
+  
+            <!-- <img src="static/images/long-form-QA-win-rate.png"> -->
+          </div>
+        </div>
+      </div>
+      <!--/ Long-form QA -->
+    </div>
+  </section>
+  
+  <section class="section">
+    <div class="container is-max-desktop">
+      <!-- MT -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Intrinsic: Mixed Data</h2>
+        </div>
+      </div>
+  
+      <div class="columns is-centered">
+        <div class="column is-four-fifths">
+          <div class="content">
+            <img src="static/images/mixed.png">
+          </div>
+        </div>
+      </div>
+  
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <div class="content has-text-justified">
+            <p>
+              <li><span class="dnerf">HaF</span> can better learn the diversity present in the combined datasets for generalization.</li>
+            </p>
+          </div>
+        </div>
+      </div>
+      <!--/ MT -->
+    </div>
+  </section>
+  
+  <section class="section">
+    <div class="container is-max-desktop">
+      <!-- MT -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Intrinsic: OOD Data</h2>
+        </div>
+      </div>
+  
+      <div class="columns is-centered">
+        <div class="column is-four-fifths">
+          <div class="content">
+            <img src="static/images/OOD.png">
+          </div>
+        </div>
+      </div>
+  
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <div class="content has-text-justified">
+            <p>
+              <li>DPO model converge to approximately 50% in a highly exaggerated manner, indicating a complete loss of modeling capability for OOD data.</li>
+            </p>
+            <p>
+              <li><span class="dnerf">HaF</span> possesses a strong ability to learn preferences and effectively generalize them to similar preference distributions, despite great differences in language style and topi</li>
+            </p>
+          </div>
+        </div>
+      </div>
+      <!--/ MT -->
+    </div>
+  </section>
+  
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column is-four-fifths">
+          <article class="message is-success">
+            <div class="message-header" style="font-size: 1.4rem;">
+              <p>Takeaway 2</p>
+            </div>
+            <div class="message-body" style="font-size: 1.2rem;">
+              <p><span class="dnerf">HaF</span> has better intrinsic performances among reward models.</p>
+              <p>DPO is sensitive to the distribution shift.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section class="section">
+    <div class="container is-max-desktop">
+      <!-- Ablation Study. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Downstream Task: Best-of-N</h2>
+          <div class="content has-text-justified">
+            <div style="text-align: center;">
+              <img src="static/images/wr.png" width="50%">
+              <img width="5%">
+              <img src="static/images/topkrecall.png" width="40%">
+            </div>
+            <p>
+              <li><span class="dnerf">HaF</span> demonstrates significant advantages over the baseline especially for Phi-2 model.</li>
+            </p>
+            <p>
+              <li>Top-k recall for baseline is close to the result with random selection, while <span class="dnerf">HaF</span> can effectively distinguish between responses when the quality differences are minimal.</li>
+            </p>
+          </div>
+        </div>
+      </div>
+      <!--/ Ablation Study. -->
+    </div>
+  </section>
+  
+  <section class="section">
+    <div class="container is-max-desktop">
+      <!-- Ablation Study. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Downstream Task: RLHF</h2>
+          <div class="content has-text-justified">
+            <div style="text-align: center;">
+              <img src="static/images/rlhf.png" width="60%">
+            </div>
+            <p>
+              The model trained with <span class="dnerf">HaF</span> has higher win rates.
+            </p>
+          </div>
+        </div>
+      </div>
+      <!--/ Ablation Study. -->
+    </div>
+  </section>
+  
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column is-four-fifths">
+          <article class="message is-warning">
+            <div class="message-header" style="font-size: 1.4rem;">
+              <p>Takeaway 3</p>
+            </div>
+            <div class="message-body" style="font-size: 1.2rem;">
+              <p> <span class="dnerf">HaF</span> generates more precise reward values during training and inference.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
 
 <section class="section" id="BibTeX">
-  <!-- <div class="container is-max-desktop content">
+  <div class="container is-max-desktop content">
     <div class="bibtex-body">
       <h2 class="title">BibTeX</h2>
-      <pre><code>@article{lai2024alarm,
-      title={ALaRM: Align Language Models via Hierarchical Rewards Modeling}, 
-      author={Lai, Yuhang and Wang, Siyuan and Liu, Shujun and Huang, Xuanjing and Wei, Zhongyu},
-      journal={arXiv preprint arXiv:2403.06754},
+      <pre><code>@article{liu2024hafrm,
+      title={HaF-RM: A Hybrid Alignment Framework for Reward Model Training}, 
+      author={Liu, Shujun and Shen, Xiaoyu and Lai, Yuhang and Wang, Siyuan and Yue, Shengbin and Huang, Zengfeng and Huang, Xuanjing and Wei, Zhongyu},
+      journal={arXiv preprint arXiv:2407.04185},
       year={2024}
 }</code></pre>
     </div>
-  </div> -->
+  </div>
 </section>
 
 <footer class="footer">
